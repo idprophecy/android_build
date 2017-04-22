@@ -261,6 +261,7 @@ endif
 
 my_cppflags := $(my_cpp_std_version) $(my_cppflags)
 
+include $(BUILD_SYSTEM)/archidroid.mk
 
 ifeq ($(SDCLANG),true)
     ifeq ($(my_sdclang),)

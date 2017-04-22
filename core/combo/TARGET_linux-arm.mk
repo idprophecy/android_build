@@ -82,8 +82,7 @@ $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    $(ARCHIDROID_GCC_CFLAGS_ARM) \
 # Modules can choose to compile some source as thumb.
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
                         $(ARCHIDROID_GCC_CFLAGS_THUMB) \
-                        -fomit-frame-pointer \
-                        -fno-strict-aliasing
+                        -fomit-frame-pointer
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(ARCHIDROID_GCC_CFLAGS)
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(ARCHIDROID_GCC_CPPFLAGS)
