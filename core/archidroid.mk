@@ -134,11 +134,20 @@ my_conlyflags := $(filter-out -Wall -Werror -g -Wextra -Weverything $(O_FLAGS),$
 # IPA #
 #######
 
+LOCAL_DISABLE_IPA := \
+	libbluetooth_jni \
+	bluetooth.mapsapi \
+	bluetooth.default \
+
 ifndef LOCAL_IS_HOST_MODULE
   ifeq (,$(filter true,$(my_clang)))
-    my_cflags += -fipa-pta
+    ifneq (1,$(words $(filter $(LOCAL_DISABLE_IPA),$(LOCAL_MODULE))))
+      my_cflags += -fipa-pta
+    endif
   else
-    my_cflags += -analyze -analyzer-purge
+    ifneq (1,$(words $(filter $(LOCAL_DISABLE_IPA),$(LOCAL_MODULE))))
+      my_cflags += -analyze -analyzer-purge
+    endif
   endif
 endif
 
@@ -147,6 +156,9 @@ endif
 ##########
 
 LOCAL_DISABLE_OPENMP := \
+	libbluetooth_jni \
+	bluetooth.mapsapi \
+	bluetooth.default \
 	libF77blas \
 	libF77blasV8 \
 	libjni_latinime \
@@ -165,6 +177,9 @@ endif
 ###################
 
 LOCAL_DISABLE_STRICT := \
+	libbluetooth_jni \
+	bluetooth.mapsapi \
+	bluetooth.default \
 	mdnsd
 
 STRICT_ALIASING_FLAGS := \
