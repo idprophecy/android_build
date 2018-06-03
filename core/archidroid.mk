@@ -125,6 +125,11 @@ endif
 
 O_FLAGS := -O3 -O2 -Os -O1 -O0 -Og -Oz
 
+# Fix "error: predicated instructions must be in IT block"
+ifeq ($(my_clang),true)
+    CUSTOM_FLAGS += -mimplicit-it=always
+endif
+
 # Remove all flags we don't want use high level of optimization
 my_cflags := $(filter-out -Wall -Werror -g -Wextra -Weverything $(O_FLAGS),$(my_cflags)) $(CUSTOM_FLAGS)
 my_cppflags := $(filter-out -Wall -Werror -g -Wextra -Weverything $(O_FLAGS),$(my_cppflags)) $(CUSTOM_FLAGS)
